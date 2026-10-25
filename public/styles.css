@@ -1,0 +1,28 @@
+body {
+  margin: 2rem;
+  font-family: Futura;
+  max-width: 30rem;
+  background: #ddd;
+}
+
+main {
+  padding: 2rem;
+  background: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+#notes {
+  margin: 1rem 0;
+  font-size: 3rem;
+  border: 2px dashed red;
+  max-width: 4em;
+  text-align: center;
+  padding: 0.5em;
+}
+
+#timer {
+  width: 5rem;
+}
