@@ -1,21 +1,34 @@
 var settings = 
   JSON.parse(sessionStorage.getItem('settings')) || { timer: '1000' };
 
-var loop = true;
-const allNotes = ['Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E',
-  'F', 'Gb', 'G'];
-var notes = allNotes.slice();
-
-
+// handlers
+//
 const notesDiv = document.querySelector('#notes');
 const btnStart = document.querySelector('#btn--start');
 const btnStop = document.querySelector('#btn--stop');
 const inputTimer = document.querySelector('#timer');
+const selectedNotes = document.querySelector('#selectedNotes');
 
+// defaults
+//
+var loop = true;
+var allNotes = [...selectedNotes.selectedOptions].map(e=>e.value);
 inputTimer.value = settings.timer;
 
+console.log(allNotes);
+
+// event listeners
+//
+selectedNotes.addEventListener('change', () => {
+  stopLoop();
+  window.setTimeout(function() {
+    allNotes = [...selectedNotes.selectedOptions].map(e=>e.value);
+    console.log(allNotes);
+  }, 1);
+});
+
 inputTimer.addEventListener('change', () => {
-  loop = false;
+  stopLoop();
 
   // timeout is to make sure new value is registered
   window.setTimeout(function() {
@@ -25,11 +38,12 @@ inputTimer.addEventListener('change', () => {
 });
 
 btnStop.addEventListener('click', async () => {
-  loop = false;
+  stopLoop();
 });
 
 btnStart.addEventListener('click', async () => {
   loop = true;
+  var notes = allNotes.slice();
 
   while (notes.length) {
     if (!loop) {
@@ -60,4 +74,8 @@ function sleep(ms) {
 function save() {
   sessionStorage.setItem('settings', JSON.stringify(settings));
   console.log('saved');
+}
+
+function stopLoop() {
+  loop = false;
 }
