@@ -32,8 +32,16 @@ inputTimer.addEventListener('change', () => {
 
   // timeout is to make sure new value is registered
   window.setTimeout(function() {
-    settings.timer = inputTimer.value;
-    save();
+    if (validateTimer(inputTimer.value)) {
+      settings.timer = inputTimer.value;
+      save();
+    } 
+    else {
+      alert('Invalid Number: choose between 0 and 10000');
+      inputTimer.value = 1000;
+      settings.timer = inputTimer.value;
+      save();
+    }
   }, 1);
 });
 
@@ -55,7 +63,7 @@ btnStart.addEventListener('click', async () => {
     const note = notes.splice(randomIndex, 1);
 
     render(note);
-    await sleep(settings.timer);
+    settings.timer ? await sleep(settings.timer) : await sleep(1000);
 
     if (!notes.length) {
       notes = allNotes.slice();
@@ -73,9 +81,17 @@ function sleep(ms) {
 
 function save() {
   sessionStorage.setItem('settings', JSON.stringify(settings));
-  console.log('saved');
 }
 
 function stopLoop() {
   loop = false;
+}
+
+function validateTimer(x) {
+    if (isNaN(x) || x < 0 || x > 10000) {
+      return false;
+    } 
+    else {
+      return true;
+    }
 }
