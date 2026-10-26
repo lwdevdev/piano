@@ -14,24 +14,24 @@ const selectedNotes = document.querySelector('#selectedNotes');
 // defaults
 //
 var loop = true;
-var allNotes = [...selectedNotes.selectedOptions].map(e=>e.value);
+var allNotes = [...selectedNotes.selectedOptions].map(e => e.value);
 inputTimer.value = settings.timer;
 
 
 // event listeners
 //
-selectedNotes.addEventListener('change', () => {
+selectedNotes.addEventListener('input', () => {
   stopLoop();
   window.setTimeout(function() {
     allNotes = [...selectedNotes.selectedOptions].map(e=>e.value);
   }, 1);
 });
 
-inputTimer.addEventListener('change', () => {
-  stopLoop();
-
+inputTimer.addEventListener('input', () => {
   // timeout is to make sure new value is registered
   window.setTimeout(function() {
+    stopLoop();
+
     if (validateTimer(inputTimer.value)) {
       settings.timer = inputTimer.value;
       save();
