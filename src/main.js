@@ -1,6 +1,7 @@
 var settings = 
   JSON.parse(sessionStorage.getItem('settings')) || { timer: '1000' };
 
+
 // handlers
 //
 const notesDiv = document.querySelector('#notes');
@@ -9,13 +10,13 @@ const btnStop = document.querySelector('#btn--stop');
 const inputTimer = document.querySelector('#timer');
 const selectedNotes = document.querySelector('#selectedNotes');
 
+
 // defaults
 //
 var loop = true;
 var allNotes = [...selectedNotes.selectedOptions].map(e=>e.value);
 inputTimer.value = settings.timer;
 
-console.log(allNotes);
 
 // event listeners
 //
@@ -23,7 +24,6 @@ selectedNotes.addEventListener('change', () => {
   stopLoop();
   window.setTimeout(function() {
     allNotes = [...selectedNotes.selectedOptions].map(e=>e.value);
-    console.log(allNotes);
   }, 1);
 });
 
