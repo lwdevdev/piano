@@ -1,5 +1,7 @@
 var settings = JSON.parse(sessionStorage.getItem('settings')) || { timer: '1000' };
 
+debugger;
+
 // handlers
 //
 const notesDiv = document.querySelector('#notes');
