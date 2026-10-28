@@ -8,6 +8,7 @@ const btnStop = document.querySelector('#btn--stop');
 const inputTimer = document.querySelector('#timer');
 const selectedNotes = document.querySelector('#selectedNotes');
 
+const SECRET_KEY = "hardcoded-secret-key";
 
 // defaults
 //
