@@ -1,3 +1,9 @@
+name: Secret Scanning
+
+on:
+  push:
+  pull_request:
+
 jobs:
   semgrep:
     runs-on: ubuntu-latest
