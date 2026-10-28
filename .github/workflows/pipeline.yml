@@ -19,5 +19,5 @@ jobs:
         run: npm run eslint
       - name: Run npm build
         run: npm run build
-      - name: Trigger deployment
-        run: curl -X POST -d {} ${{ secrets.NETLIFY_DEPLOY_HOOK }}
+#      - name: Trigger deployment
+#        run: curl -X POST -d {} ${{ secrets.NETLIFY_DEPLOY_HOOK }}
