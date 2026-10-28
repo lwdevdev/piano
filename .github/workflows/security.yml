@@ -19,8 +19,6 @@ jobs:
           languages: javascript
       - uses: github/codeql-action/analyze@v2
 
-
-jobs:
   trufflehog:
     runs-on: ubuntu-latest
     steps:
